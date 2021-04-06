@@ -1,6 +1,19 @@
 from aiogram.types import ReplyKeyboardRemove, \
     ReplyKeyboardMarkup, KeyboardButton, \
     InlineKeyboardMarkup, InlineKeyboardButton
+from openpyxl import load_workbook
+from config import TOKEN
+import pandas as pd
+import logging
+from aiogram import Bot, Dispatcher, executor, types
+import knopkaa as kb
+from aiogram.dispatcher.filters import Text
+from openpyxl import load_workbook
+wb = load_workbook(filename="botbarber.xlsx")
+sheet = wb.active
+barberslist=[]
+for x in sheet.rows:
+    barberslist.append(x)
 
 
 menu = ReplyKeyboardMarkup(
@@ -30,18 +43,10 @@ onlzap = ReplyKeyboardMarkup(
         ]],
     resize_keyboard=True
 )
-questkn = ReplyKeyboardMarkup(
-    keyboard=[[
+questkn=ReplyKeyboardMarkup(
+    keyboard=[
 
-
-            KeyboardButton(text="⬅️ Главное меню")
-        ]],
-    resize_keyboard=True
-)
-barbers= ReplyKeyboardMarkup(
-    keyboard=[[
-
-
+        [
             KeyboardButton(text="⬅️ Главное меню")
         ]],
     resize_keyboard=True
